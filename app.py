@@ -1,12 +1,13 @@
 from flask import Flask, request, jsonify
 import numpy as np
 import joblib  # Assuming you saved your model using joblib
-import librosa  # For audio processing
+import librosa  # For audio processing\
+import os
 
 app = Flask(__name__)
 
-# Load your pre-trained model
-model = joblib.load(r"C:\Users\krish\OneDrive\Desktop\Parkinsons\Latest\model.sav")
+model_path = os.path.join(os.path.dirname(__file__), 'model.sav')
+model = joblib.load(model_path)
 
 @app.route('/predict', methods=['POST'])
 def predict():
